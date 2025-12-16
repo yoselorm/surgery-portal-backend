@@ -18,7 +18,8 @@ const userSchema = new Schema({
     },
     country: {
         type: String,
-        required: true
+        required: true,
+        index: true
     },
     city: {
         type: String,
@@ -44,9 +45,15 @@ const userSchema = new Schema({
         type: Boolean,
         default: false
     },
+    resetPasswordToken: String,
+    resetPasswordExpire: Date,
+    // refreshToken: {
+    //     token: { type: String, default: null },
+    //     createdAt: { type: Date, default: Date.now }
+    // }
     refreshToken: {
-        token: { type: String, default: null },
-        createdAt: { type: Date, default: Date.now }
+        type: String,
+        default: null
     }
 
 }, { timestamps: true })
@@ -84,6 +91,7 @@ userSchema.post('save', function (doc) {
         throw new Error('Doctor ID generation failed');
     }
 });
+
 
 const User = mongoose.model('User', userSchema)
 module.exports = User
