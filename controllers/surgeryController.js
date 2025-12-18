@@ -256,12 +256,30 @@ exports.updateSurgery = async (req, res) => {
       const { doctorId } = req.params;
   
       const surgeries = await Surgery.find({ doctor: doctorId })
-        .populate('doctor', 'fullname email')
-        .sort({ createdAt: -1 });
+        .populate('doctor', 'doctorId email fullname specialty phone city country status')
+        .sort({ createdAt: -1 })
+        .select('-formData');
+  
+      if (surgeries.length === 0) {
+        return res.json({ 
+          message: 'No surgeries found for this doctor' 
+        });
+      }
+  
+      // Extract doctor info from first surgery (since it's the same for all)
+      const doctorInfo = surgeries[0].doctor;
+  
+      // Remove doctor field from each surgery to reduce payload size
+      const surgeriesWithoutDoctor = surgeries.map(surgery => {
+        const surgeryObj = surgery.toObject();
+        delete surgeryObj.doctor;
+        return surgeryObj;
+      });
   
       res.status(200).json({
         count: surgeries.length,
-        data: surgeries
+        doctor: doctorInfo, 
+        data: surgeriesWithoutDoctor 
       });
     } catch (error) {
       console.error(error);
