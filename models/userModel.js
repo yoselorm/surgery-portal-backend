@@ -47,6 +47,7 @@ const userSchema = new Schema({
     },
     resetPasswordToken: String,
     resetPasswordExpire: Date,
+    emailReceived:Boolean,
     // refreshToken: {
     //     token: { type: String, default: null },
     //     createdAt: { type: Date, default: Date.now }
