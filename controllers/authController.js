@@ -32,7 +32,7 @@ exports.adminLogin = async (req, res) => {
         //     maxAge: 7 * 24 * 60 * 60 * 1000, 
         //     path: '/',
         // })
-           res.cookie('refreshToken', refreshToken, {
+           res.cookie('isolpOpsRefreshToken', refreshToken, {
             httpOnly: true,
             secure: true,
             sameSite: none,
