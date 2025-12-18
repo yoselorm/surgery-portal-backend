@@ -11,7 +11,7 @@ const analyticsRouter = require('./routes/analyticsRoute');
 const doctorAnalytics = require('./routes/doctorAnalyticsRoute');
 
 const app = express()
-const PORT = 4000
+const PORT = process.env.PORT || 5000;
 
 app.use(cors({
     origin: [
@@ -21,6 +21,8 @@ app.use(cors({
       "http://127.0.0.1:3000",
       "http://127.0.0.1:5173",
       "http://127.0.0.1:5174",
+      "https://surgery-portal-six.vercel.app",
+      "https://admin-surgery-portal.vercel.app"
     ],
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
