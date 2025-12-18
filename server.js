@@ -25,6 +25,10 @@ app.use(cors({
       "http://127.0.0.1:5174",
       "https://surgery-portal-six.vercel.app",
       "https://admin-surgery-portal.vercel.app"
+        "https://surgery-portal-1.onrender.com"
+              "https://admin-surgery-portal.onrender.app"
+
+        
     ],
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
