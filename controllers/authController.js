@@ -35,7 +35,7 @@ exports.adminLogin = async (req, res) => {
            res.cookie('refreshToken', refreshToken, {
             httpOnly: true,
             secure: true,
-            sameSite: none,
+            sameSite: 'none',
             maxAge: 7 * 24 * 60 * 60 * 1000, 
             path: '/',
         })
@@ -89,7 +89,7 @@ exports.userLogin = async (req, res) => {
            res.cookie('refreshToken', refreshToken, {
             httpOnly: true,
             secure: true,
-            sameSite: none,
+            sameSite: 'none',
             maxAge: 7 * 24 * 60 * 60 * 1000, 
             path: '/',
         })
