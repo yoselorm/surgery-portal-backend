@@ -32,14 +32,7 @@ exports.adminLogin = async (req, res) => {
             maxAge: 7 * 24 * 60 * 60 * 1000, 
             path: '/',
         })
-        //    res.cookie('refreshToken', refreshToken, {
-        //     httpOnly: true,
-        //     secure: true,
-        //     sameSite: 'none',
-        //     maxAge: 7 * 24 * 60 * 60 * 1000, 
-        //     path: '/',
-        //     domain: '.onrender.com'
-        // })
+      
         const adminResponse = admin.toObject();
         delete adminResponse.password;
         delete adminResponse.refreshToken;
@@ -69,7 +62,7 @@ exports.userLogin = async (req, res) => {
         const isActive = user.status === 'active';
         if (!isActive) return res.status(401).json({ message: 'Account Flagged. Contact Admin' })
 
-        const accessToken = jwt.sign({ id: user._id, type: 'user' }, ACCESS_TOKEN_SECRET, { expiresIn: '15m' })
+        const accessToken = jwt.sign({ id: user._id, type: 'user' }, ACCESS_TOKEN_SECRET, { expiresIn: '1h' })
         const refreshToken = jwt.sign({ id: user._id, type: 'user' }, REFRESH_TOKEN_SECRET, { expiresIn: '7d' })
 
         // user.refreshToken = {
@@ -86,17 +79,6 @@ exports.userLogin = async (req, res) => {
             maxAge: 7 * 24 * 60 * 60 * 1000, 
             path: '/',
         })
-
-        //    res.cookie('refreshToken', refreshToken, {
-        //     httpOnly: true,
-        //     secure: true,
-        //     sameSite: 'none',
-        //     maxAge: 7 * 24 * 60 * 60 * 1000, 
-        //     path: '/',
-        //     domain: '.onrender.com'
-        // })
-
-
         const userResponse = user.toObject();
         delete userResponse.password;
         delete userResponse.refreshToken;
@@ -253,14 +235,14 @@ exports.logout = async (req, res) => {
         res.clearCookie('refreshToken', {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict',
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
         }); res.json({ message: 'Logged out successfully' });
     } catch (err) {
         // Even if token is invalid, clear the cookie
         res.clearCookie('refreshToken', {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict',
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
         }); res.json({ message: 'Logged out successfully' });
     }
 };
