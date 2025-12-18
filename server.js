@@ -7,6 +7,8 @@ const adminRouter = require('./routes/adminRoute');
 const { globalLimiter } = require('./middlewares/rateLimiiter');
 const userRoute = require('./routes/userRoute');
 const surgeryRouter = require('./routes/surgeryRoute');
+const analyticsRouter = require('./routes/analyticsRoute');
+const doctorAnalytics = require('./routes/doctorAnalyticsRoute');
 
 const app = express()
 const PORT = 4000
@@ -42,6 +44,8 @@ app.use('/api/v1',authRouter)
 app.use('/api/v1',adminRouter)
 app.use('/api/v1',userRoute)
 app.use('/api/v1',surgeryRouter)
+app.use('/api/v1',analyticsRouter)
+app.use('/api/v1',doctorAnalytics)
 
 
 app.listen(PORT,()=>{
