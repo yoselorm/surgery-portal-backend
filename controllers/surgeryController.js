@@ -50,6 +50,7 @@ exports.addSurgery = async (req, res) => {
         surgeryType,
         date,
         formData,
+        status,
         formVersion
       } = req.body;
   
@@ -61,9 +62,9 @@ exports.addSurgery = async (req, res) => {
         procedure,
         surgeryType,
         date,
+        status,
         formVersion,
-        formData,
-        status: 'incomplete'
+        formData,    
       });
   
       res.status(201).json({

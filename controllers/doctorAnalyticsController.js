@@ -35,6 +35,7 @@ exports.getMyDashboard = async (req, res) => {
       totalSurgeriesInRange,
       completedSurgeries,
       incompleteSurgeries,
+      followUps,
       completedAllTime,
       surgeryTypes,
       topProcedures
@@ -56,9 +57,16 @@ exports.getMyDashboard = async (req, res) => {
       }),
       
       // Incomplete in range
+  
       Surgery.countDocuments({
         doctor: doctorId,
-        status: 'incomplete',
+        status: 'draft',
+        createdAt: { $gte: startDate }
+      }),
+
+      Surgery.countDocuments({
+        doctor: doctorId,
+        status: 'follow-ups',
         createdAt: { $gte: startDate }
       }),
       
@@ -128,6 +136,7 @@ exports.getMyDashboard = async (req, res) => {
           totalSurgeriesInRange,
           completedSurgeries,
           incompleteSurgeries,
+          followUps,
           completionRateInRange: `${completionRateInRange}%`,
           completionRateAllTime: `${completionRateAllTime}%`
         },
@@ -468,6 +477,7 @@ exports.getMyQuickStats = async (req, res) => {
       todaySurgeries,
       thisWeekSurgeries,
       incompleteSurgeries,
+      followUps,
       totalSurgeries,
       recentlyCompleted
     ] = await Promise.all([
@@ -483,7 +493,11 @@ exports.getMyQuickStats = async (req, res) => {
       
       Surgery.countDocuments({
         doctor: doctorId,
-        status: 'incomplete'
+        status: 'draft'
+      }),
+      Surgery.countDocuments({
+        doctor: doctorId,
+        status: 'follow-ups'
       }),
       
       Surgery.countDocuments({
@@ -503,6 +517,7 @@ exports.getMyQuickStats = async (req, res) => {
         todaySurgeries,
         thisWeekSurgeries,
         incompleteSurgeries,
+        followUps,
         totalSurgeries,
         recentlyCompleted
       }

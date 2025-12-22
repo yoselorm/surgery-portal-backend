@@ -44,8 +44,8 @@ const surgerySchema = new Schema({
   },
   status: {
     type: String,
-    enum: ['incomplete', 'complete'],
-    default: 'incomplete',
+    enum: ['follow-ups', 'complete','draft'],
+    default: 'follow-ups',
     index: true
   },
   formData: {
