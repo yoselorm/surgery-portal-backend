@@ -494,7 +494,7 @@ const sendDoctorCredentials = (email, firstName, plainPassword) => {
                                   <table width="100%" cellpadding="0" cellspacing="0" style="margin: 30px 0;">
                                       <tr>
                                           <td align="center">
-                                              <a href="${process.env.FRONTEND_URL || 'https://surgery-portal-six.vercel.app'}/login" target='_blank' style="display: inline-block; background: white; color: black; text-decoration: none; padding: 16px 40px; border-radius: 8px; font-size: 16px; font-weight: 600; box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);">
+                                              <a href="${process.env.FRONTEND_URL || 'https://surgery-portal-six.vercel.app'}/signin" target='_blank' style="display: inline-block; background: white; color: black; text-decoration: none; padding: 16px 40px; border-radius: 8px; font-size: 16px; font-weight: 600; box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);">
                                                   Login to Your Account →
                                               </a>
                                           </td>
