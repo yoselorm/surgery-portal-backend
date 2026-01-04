@@ -1,6 +1,6 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const cors = require('cors')
+const cors = require('cors');
 const database = require('./config/db');
 const authRouter = require('./routes/authRoute');
 const adminRouter = require('./routes/adminRoute');
@@ -10,49 +10,59 @@ const surgeryRouter = require('./routes/surgeryRoute');
 const analyticsRouter = require('./routes/analyticsRoute');
 const doctorAnalytics = require('./routes/doctorAnalyticsRoute');
 
-const app = express()
+const app = express();
 const PORT = process.env.PORT || 4000;
-app.use(cookieParser());
 
+// 🔥 Must be first for Render / Secure cookies
+app.set('trust proxy', 1);
 
-app.use(cors({
-  origin: [
-    "http://localhost:3000",
-    "http://localhost:5173",
-    "http://localhost:5173",
-    "http://localhost:5174",
-    "http://127.0.0.1:3000",
-    "http://127.0.0.1:5173",
-    "http://127.0.0.1:5174",
-     "https://app.isolp.org",
-    "https://admin.isolp.org",
-  ],
+const corsOptions = {
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      "http://localhost:3000",
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "http://127.0.0.1:3000",
+      "http://127.0.0.1:5173",
+      "http://127.0.0.1:5174",
+      "https://app.isolp.org",
+      "https://admin.isolp.org",
+    ];
+
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, origin);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true,
-  preflightContinue: false,
-  optionsSuccessStatus: 204
-}));
+};
 
+// ✅ Use CORS for all requests
+app.use(cors(corsOptions));
 
+// // ✅ Handle preflight for all routes
+// app.options('/*', cors(corsOptions));
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-app.use(globalLimiter)
+app.use(cookieParser());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-database()
+app.use(globalLimiter);
 
+// 🔥 Connect to DB
+database();
 
-
-app.use('/api/v1', authRouter)
-app.use('/api/v1', adminRouter)
-app.use('/api/v1', userRoute)
-app.use('/api/v1', surgeryRouter)
-app.use('/api/v1', analyticsRouter)
-app.use('/api/v1', doctorAnalytics)
-
+// 🔥 Routes
+app.use('/api/v1', authRouter);
+app.use('/api/v1', adminRouter);
+app.use('/api/v1', userRoute);
+app.use('/api/v1', surgeryRouter);
+app.use('/api/v1', analyticsRouter);
+app.use('/api/v1', doctorAnalytics);
 
 app.listen(PORT, () => {
   console.log(`Portal running on port ${PORT}`);
-
-})
+});
