@@ -30,10 +30,10 @@ exports.adminLogin = async (req, res) => {
             httpOnly: true,
             secure: true,
             sameSite: 'none',
-            maxAge: 7 * 24 * 60 * 60 * 1000, 
+            maxAge: 7 * 24 * 60 * 60 * 1000,
             path: '/',
         })
-      
+
         const adminResponse = admin.toObject();
         delete adminResponse.password;
         delete adminResponse.refreshToken;
@@ -78,7 +78,7 @@ exports.userLogin = async (req, res) => {
             httpOnly: true,
             secure: true,
             sameSite: 'none',
-            maxAge: 7 * 24 * 60 * 60 * 1000, 
+            maxAge: 7 * 24 * 60 * 60 * 1000,
             path: '/',
         })
         const userResponse = user.toObject();
@@ -169,7 +169,7 @@ exports.userLogin = async (req, res) => {
 exports.refreshAccessToken = async (req, res) => {
     const { refreshToken } = req.cookies;
     console.log('🍪 Cookies:', req.cookies);
-    
+
     if (!refreshToken) {
         return res.status(401).json({ message: 'Refresh token required' });
     }
@@ -186,13 +186,13 @@ exports.refreshAccessToken = async (req, res) => {
 
         // Generate new tokens
         const newAccessToken = jwt.sign(
-            { id: account._id, type: decoded.type }, 
-            ACCESS_TOKEN_SECRET, 
+            { id: account._id, type: decoded.type },
+            ACCESS_TOKEN_SECRET,
             { expiresIn: '15m' }
         );
         const newRefreshToken = jwt.sign(
-            { id: account._id, type: decoded.type }, 
-            REFRESH_TOKEN_SECRET, 
+            { id: account._id, type: decoded.type },
+            REFRESH_TOKEN_SECRET,
             { expiresIn: '7d' }
         );
 
@@ -216,39 +216,76 @@ exports.refreshAccessToken = async (req, res) => {
     }
 };
 
+// exports.logout = async (req, res) => {
+//     const { refreshToken } = req.cookies;
+//     if (!refreshToken) {
+//         return res.status(400).json({ message: 'No refresh token provided' });
+//     }
+
+//     try {
+//         const decoded = jwt.verify(refreshToken, REFRESH_TOKEN_SECRET);
+//         const Model = decoded.type === 'admin' ? Admin : User;
+
+//         const account = await Model.findById(decoded.id);
+
+//         if (account) {
+//             // Invalidate the refresh token
+//             account.refreshToken = null;
+//             await account.save();
+//         }
+
+//         res.clearCookie('refreshToken', {
+//             httpOnly: true,
+//             secure: process.env.NODE_ENV === 'production',
+//             sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+//         }); res.json({ message: 'Logged out successfully' });
+//     } catch (err) {
+//         // Even if token is invalid, clear the cookie
+//         res.clearCookie('refreshToken', {
+//             httpOnly: true,
+//             secure: process.env.NODE_ENV === 'production',
+//             sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+//         }); res.json({ message: 'Logged out successfully' });
+//     }
+// };
 exports.logout = async (req, res) => {
-    const { refreshToken } = req.cookies;
-    if (!refreshToken) {
-        return res.status(400).json({ message: 'No refresh token provided' });
-    }
-
     try {
-        const decoded = jwt.verify(refreshToken, REFRESH_TOKEN_SECRET);
-        const Model = decoded.type === 'admin' ? Admin : User;
+        // Get token from Authorization header
+        const authHeader = req.headers.authorization;
 
-        const account = await Model.findById(decoded.id);
+        if (authHeader && authHeader.startsWith('Bearer ')) {
+            const accessToken = authHeader.split(' ')[1];
+            const decoded = jwt.verify(accessToken, ACCESS_TOKEN_SECRET);
+            const Model = decoded.type === 'admin' ? Admin : User;
 
-        if (account) {
-            // Invalidate the refresh token
-            account.refreshToken = null;
-            await account.save();
+            const account = await Model.findById(decoded.id);
+            if (account) {
+                account.refreshToken = null;
+                await account.save();
+            }
         }
 
+        // Clear the cookie regardless
         res.clearCookie('refreshToken', {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-        }); res.json({ message: 'Logged out successfully' });
+            secure: true,
+            sameSite: 'none',
+            path: '/',
+        });
+
+        res.json({ message: 'Logged out successfully' });
     } catch (err) {
-        // Even if token is invalid, clear the cookie
+        // Even if token verification fails, clear cookie and respond success
         res.clearCookie('refreshToken', {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-        }); res.json({ message: 'Logged out successfully' });
+            secure: true,
+            sameSite: 'none',
+            path: '/',
+        });
+
+        res.json({ message: 'Logged out successfully' });
     }
 };
-
 
 exports.updatePassword = async (req, res) => {
     try {
