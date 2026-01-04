@@ -74,7 +74,7 @@ exports.userLogin = async (req, res) => {
         await user.save()
 
         res.cookie('refreshToken', refreshToken, {
-            domain: '.isolp.org',
+            // domain: '.isolp.org',
             httpOnly: true,
             secure: true,
             sameSite: 'none',
