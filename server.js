@@ -13,7 +13,6 @@ const doctorAnalytics = require('./routes/doctorAnalyticsRoute');
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-// 🔥 Must be first for Render / Secure cookies
 app.set('trust proxy', 1);
 
 const corsOptions = {
@@ -27,7 +26,7 @@ const corsOptions = {
     ];
 
     if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, origin); // 🔥 Return the origin, not true
+      callback(null, origin); 
     } else {
       callback(new Error("Not allowed by CORS"));
     }
@@ -37,11 +36,7 @@ const corsOptions = {
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 
-// ✅ Use CORS for all requests
 app.use(cors(corsOptions));
-
-// // ✅ Handle preflight for all routes
-// app.options('/*', cors(corsOptions));
 
 app.use(cookieParser());
 app.use(express.json());
@@ -49,10 +44,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(globalLimiter);
 
-// 🔥 Connect to DB
 database();
 
-// 🔥 Routes
 app.use('/api/v1', authRouter);
 app.use('/api/v1', adminRouter);
 app.use('/api/v1', userRoute);

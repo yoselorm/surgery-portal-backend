@@ -26,7 +26,7 @@ exports.adminLogin = async (req, res) => {
         await admin.save()
 
         res.cookie('refreshToken', refreshToken, {
-            domain: '.isolp.org',
+            // domain: '.isolp.org',
             httpOnly: true,
             secure: true,
             sameSite: 'none',
