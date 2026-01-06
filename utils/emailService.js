@@ -21,7 +21,7 @@
 //           <tr>
 //               <td align="center">
 //                   <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;">
-                      
+
 //                       <tr>
 //                           <td style="background: #ffffff; padding: 40px 30px; text-align: center;">
 //                               <h1 style="margin: 0; color:rgba(4, 22, 65, 0.05); font-size: 28px; font-weight: 600; letter-spacing: -0.5px;">
@@ -32,17 +32,17 @@
 //                               </p>
 //                           </td>
 //                       </tr>
-  
+
 //                       <tr>
 //                           <td style="padding: 40px 40px 30px 40px;">
 //                               <p style="margin: 0 0 20px 0; color: #374151; font-size: 16px; line-height: 1.6;">
 //                                   Hello <strong style="color: #667eea;">Dr. ${firstName}</strong>,
 //                               </p>
-                              
+
 //                               <p style="margin: 0 0 25px 0; color: #6b7280; font-size: 15px; line-height: 1.7;">
 //                                   Your account has been successfully created! We're excited to have you on board. Below are your secure login credentials to access the ISOLP Surgery Portal.
 //                               </p>
-  
+
 //                               <table width="100%" cellpadding="0" cellspacing="0" style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-radius: 10px; border: 1px solid #e2e8f0; margin: 25px 0;">
 //                                   <tr>
 //                                       <td style="padding: 25px;">
@@ -85,7 +85,7 @@
 //                                       </td>
 //                                   </tr>
 //                               </table>
-  
+
 //                               <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 6px; margin: 25px 0;">
 //                                   <tr>
 //                                       <td style="padding: 16px 20px;">
@@ -96,7 +96,7 @@
 //                                       </td>
 //                                   </tr>
 //                               </table>
-  
+
 //                               <table width="100%" cellpadding="0" cellspacing="0" style="margin: 30px 0;">
 //                                   <tr>
 //                                       <td align="center">
@@ -106,7 +106,7 @@
 //                                       </td>
 //                                   </tr>
 //                               </table>
-  
+
 //                               <table width="100%" cellpadding="0" cellspacing="0" style="margin-top: 30px; padding-top: 25px; border-top: 1px solid #e5e7eb;">
 //                                   <tr>
 //                                       <td>
@@ -121,7 +121,7 @@
 //                               </table>
 //                           </td>
 //                       </tr>
-  
+
 //                       <tr>
 //                           <td style="background-color: #f9fafb; padding: 30px 40px; text-align: center; border-top: 1px solid #e5e7eb;">
 //                               <p style="margin: 0 0 10px 0; color: #374151; font-size: 15px; font-weight: 500;">
@@ -137,7 +137,7 @@
 //                           </td>
 //                       </tr>
 //                   </table>
-  
+
 //                   <table width="600" cellpadding="0" cellspacing="0" style="margin-top: 20px;">
 //                       <tr>
 //                           <td align="center" style="color: #9ca3af; font-size: 11px; line-height: 1.5;">
@@ -206,7 +206,7 @@
 //               <tr>
 //                   <td align="center">
 //                       <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;">
-                      
+
 //                           <tr>
 //                               <td style="background: #ffffff; padding: 40px 30px; text-align: center;">
 //                                   <h1 style="margin: 0; color:rgba(4, 22, 65, 0.05); font-size: 28px; font-weight: 600; letter-spacing: -0.5px;">
@@ -217,17 +217,17 @@
 //                                   </p>
 //                               </td>
 //                           </tr>
-      
+
 //                           <tr>
 //                               <td style="padding: 40px 40px 30px 40px;">
 //                                   <p style="margin: 0 0 20px 0; color: #374151; font-size: 16px; line-height: 1.6;">
 //                                       Hello <strong style="color: #667eea;">Dr. ${firstName}</strong>,
 //                                   </p>
-                                  
+
 //                                   <p style="margin: 0 0 25px 0; color: #6b7280; font-size: 15px; line-height: 1.7;">
 //                                       Your account has been successfully created! We're excited to have you on board. Below are your secure login credentials to access the ISOLP Surgery Portal.
 //                                   </p>
-      
+
 //                                   <table width="100%" cellpadding="0" cellspacing="0" style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-radius: 10px; border: 1px solid #e2e8f0; margin: 25px 0;">
 //                                       <tr>
 //                                           <td style="padding: 25px;">
@@ -270,7 +270,7 @@
 //                                           </td>
 //                                       </tr>
 //                                   </table>
-      
+
 //                                   <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 6px; margin: 25px 0;">
 //                                       <tr>
 //                                           <td style="padding: 16px 20px;">
@@ -281,7 +281,7 @@
 //                                           </td>
 //                                       </tr>
 //                                   </table>
-      
+
 //                                   <table width="100%" cellpadding="0" cellspacing="0" style="margin: 30px 0;">
 //                                       <tr>
 //                                           <td align="center">
@@ -291,7 +291,7 @@
 //                                           </td>
 //                                       </tr>
 //                                   </table>
-      
+
 //                                   <table width="100%" cellpadding="0" cellspacing="0" style="margin-top: 30px; padding-top: 25px; border-top: 1px solid #e5e7eb;">
 //                                       <tr>
 //                                           <td>
@@ -306,7 +306,7 @@
 //                                   </table>
 //                               </td>
 //                           </tr>
-      
+
 //                           <tr>
 //                               <td style="background-color: #f9fafb; padding: 30px 40px; text-align: center; border-top: 1px solid #e5e7eb;">
 //                                   <p style="margin: 0 0 10px 0; color: #374151; font-size: 15px; font-weight: 500;">
@@ -322,7 +322,7 @@
 //                               </td>
 //                           </tr>
 //                       </table>
-      
+
 //                       <table width="600" cellpadding="0" cellspacing="0" style="margin-top: 20px;">
 //                           <tr>
 //                               <td align="center" style="color: #9ca3af; font-size: 11px; line-height: 1.5;">
@@ -379,11 +379,11 @@
 const SibApiV3Sdk = require('sib-api-v3-sdk');
 
 if (!process.env.BREVO_API_KEY) {
-  throw new Error('BREVO_API_KEY missing');
+    throw new Error('BREVO_API_KEY missing');
 }
 
 if (!process.env.BREVO_SENDER_EMAIL) {
-  throw new Error('BREVO_SENDER_EMAIL missing');
+    throw new Error('BREVO_SENDER_EMAIL missing');
 }
 
 const client = SibApiV3Sdk.ApiClient.instance;
@@ -393,16 +393,16 @@ apiKey.apiKey = process.env.BREVO_API_KEY;
 const tranEmailApi = new SibApiV3Sdk.TransactionalEmailsApi();
 
 const sendEmail = ({ to, subject, html, text }) => {
-  return tranEmailApi.sendTransacEmail({
-    sender: {
-      email: process.env.BREVO_SENDER_EMAIL,
-      name: process.env.BREVO_SENDER_NAME || 'ISOLP Surgery Portal',
-    },
-    to: [{ email: to }],
-    subject,
-    htmlContent: html,
-    textContent: text,
-  });
+    return tranEmailApi.sendTransacEmail({
+        sender: {
+            email: process.env.BREVO_SENDER_EMAIL,
+            name: process.env.BREVO_SENDER_NAME || 'ISOLP Surgery Portal',
+        },
+        to: [{ email: to }],
+        subject,
+        htmlContent: html,
+        textContent: text,
+    });
 };
 
 // const sendDoctorCredentials = (email, firstName, plainPassword) => {
@@ -415,7 +415,7 @@ const sendEmail = ({ to, subject, html, text }) => {
 //               <tr>
 //                   <td align="center">
 //                       <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;">
-                      
+
 //                           <tr>
 //                               <td style="background: #ffffff; padding: 40px 30px; text-align: center;">
 //                                   <h1 style="margin: 0; color:rgba(4, 22, 65, 0.05); font-size: 28px; font-weight: 600; letter-spacing: -0.5px;">
@@ -426,17 +426,17 @@ const sendEmail = ({ to, subject, html, text }) => {
 //                                   </p>
 //                               </td>
 //                           </tr>
-      
+
 //                           <tr>
 //                               <td style="padding: 40px 40px 30px 40px;">
 //                                   <p style="margin: 0 0 20px 0; color: #374151; font-size: 16px; line-height: 1.6;">
 //                                       Hello <strong style="color: #667eea;">Dr. ${firstName}</strong>,
 //                                   </p>
-                                  
+
 //                                   <p style="margin: 0 0 25px 0; color: #6b7280; font-size: 15px; line-height: 1.7;">
 //                                       Your account has been successfully created! We're excited to have you on board. Below are your secure login credentials to access the ISOLP Surgery Portal.
 //                                   </p>
-      
+
 //                                   <table width="100%" cellpadding="0" cellspacing="0" style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-radius: 10px; border: 1px solid #e2e8f0; margin: 25px 0;">
 //                                       <tr>
 //                                           <td style="padding: 25px;">
@@ -479,7 +479,7 @@ const sendEmail = ({ to, subject, html, text }) => {
 //                                           </td>
 //                                       </tr>
 //                                   </table>
-      
+
 //                                   <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 6px; margin: 25px 0;">
 //                                       <tr>
 //                                           <td style="padding: 16px 20px;">
@@ -490,7 +490,7 @@ const sendEmail = ({ to, subject, html, text }) => {
 //                                           </td>
 //                                       </tr>
 //                                   </table>
-      
+
 //                                   <table width="100%" cellpadding="0" cellspacing="0" style="margin: 30px 0;">
 //                                       <tr>
 //                                           <td align="center">
@@ -500,7 +500,7 @@ const sendEmail = ({ to, subject, html, text }) => {
 //                                           </td>
 //                                       </tr>
 //                                   </table>
-      
+
 //                                   <table width="100%" cellpadding="0" cellspacing="0" style="margin-top: 30px; padding-top: 25px; border-top: 1px solid #e5e7eb;">
 //                                       <tr>
 //                                           <td>
@@ -515,7 +515,7 @@ const sendEmail = ({ to, subject, html, text }) => {
 //                                   </table>
 //                               </td>
 //                           </tr>
-      
+
 //                           <tr>
 //                               <td style="background-color: #f9fafb; padding: 30px 40px; text-align: center; border-top: 1px solid #e5e7eb;">
 //                                   <p style="margin: 0 0 10px 0; color: #374151; font-size: 15px; font-weight: 500;">
@@ -531,7 +531,7 @@ const sendEmail = ({ to, subject, html, text }) => {
 //                               </td>
 //                           </tr>
 //                       </table>
-      
+
 //                       <table width="600" cellpadding="0" cellspacing="0" style="margin-top: 20px;">
 //                           <tr>
 //                               <td align="center" style="color: #9ca3af; font-size: 11px; line-height: 1.5;">
@@ -551,9 +551,9 @@ const sendEmail = ({ to, subject, html, text }) => {
 
 const sendDoctorCredentials = (email, firstName, plainPassword) => {
     sendEmail({
-      to: email,
-      subject: 'Invitation to SurgiDesk – Phase 2 Testing Access',
-      html: `
+        to: email,
+        subject: 'Invitation to SurgiDesk – Phase 2 Testing Access',
+        html: `
         <body style="margin:0;padding:0;background:#f4f7fa;font-family:Segoe UI,Arial,sans-serif;">
           <table width="100%" cellpadding="0" cellspacing="0" style="padding:40px 0;">
             <tr>
@@ -563,6 +563,14 @@ const sendDoctorCredentials = (email, firstName, plainPassword) => {
                   <!-- Header -->
                   <tr>
                     <td style="padding:40px;text-align:center;">
+
+                      <img 
+                        src="https://app.isolp.org/assets/isplogonormal-M3_izi-m.svg"
+                        alt="ISOLP Logo"
+                        width="64"
+                        height="64"
+                        style="display:block;margin:0 auto 16px auto;border-radius:12px;"
+                        />
                       <h1 style="margin:0;color:#1e293b;font-size:26px;">
                         ISOLP SurgiDesk
                       </h1>
@@ -659,12 +667,12 @@ const sendDoctorCredentials = (email, firstName, plainPassword) => {
         </body>
       `,
     }).catch(err => {
-      console.error('❌ Brevo send error:', err.response?.text || err.message);
+        console.error('❌ Brevo send error:', err.response?.text || err.message);
     });
-  };
-  
+};
+
 
 module.exports = {
-  sendEmail,
-  sendDoctorCredentials,
+    sendEmail,
+    sendDoctorCredentials,
 };
