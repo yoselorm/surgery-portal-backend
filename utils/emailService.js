@@ -565,7 +565,7 @@ const sendDoctorCredentials = (email, firstName, plainPassword) => {
                     <td style="padding:40px;text-align:center;">
 
                       <img 
-                        src="https://isolp.org/images/mainlogo.png"
+                        src="https://isolp.org/images/isolpicon.png"
                         alt="ISOLP Logo"
                         width="64"
                         height="64"
