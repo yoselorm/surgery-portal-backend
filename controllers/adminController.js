@@ -48,7 +48,8 @@ exports.register = async (req, res) => {
                 doctorId: user.doctorId,
                 status: user.status,
                 country: user.country,
-                city: user.city
+                city: user.city,
+                password: randomPassword //this is just for testing purposes
 
             }
 
