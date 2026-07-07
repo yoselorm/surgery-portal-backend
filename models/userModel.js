@@ -14,16 +14,13 @@ const userSchema = new Schema({
     },
     specialty: {
         type: String,
-        required: true
     },
     country: {
         type: String,
-        required: true,
         index: true
     },
     city: {
         type: String,
-        required: true
     },
     doctorId: {
         type: String,

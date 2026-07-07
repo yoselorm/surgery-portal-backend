@@ -16,3 +16,5 @@ exports.generateAccessTokens = (user) =>{
         {expiresIn:'15m'}
     )
 }
+
+ 

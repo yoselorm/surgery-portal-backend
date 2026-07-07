@@ -4,7 +4,7 @@ const cors = require('cors');
 const database = require('./config/db');
 const authRouter = require('./routes/authRoute');
 const adminRouter = require('./routes/adminRoute');
-const { globalLimiter } = require('./middlewares/rateLimiiter');
+const { globalLimiter, blacklistMiddleware } = require('./middlewares/rateLimiiter');
 const userRoute = require('./routes/userRoute');
 const surgeryRouter = require('./routes/surgeryRoute');
 const analyticsRouter = require('./routes/analyticsRoute');
@@ -42,7 +42,9 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(globalLimiter);
+// app.use(globalLimiter);
+app.use(blacklistMiddleware); // must come before any limiter/route
+app.use(globalLimiter);  
 
 database();
 

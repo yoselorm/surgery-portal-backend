@@ -6,9 +6,9 @@ require('dotenv').config()
 
 async function seedAdmin() {
   // const email = "superadmin@surgeryportal.com";
-  // const password = "SuperAdmin@1234";
+  // const password = "superIs0lp@1234@1234";
   const email = "admin@surgeryportal.com";
-  const password = "Admin@1234";
+  const password = "Is0lp@1234";
 
   const mongouri = process.env.MONGODB_URI
 

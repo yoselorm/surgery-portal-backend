@@ -8,15 +8,17 @@ exports.register = async (req, res) => {
     console.log(req.body)
     try {
         const { email, fullname, phone, specialty, country, city, } = req.body;
-        const compulsoryFields = { email, fullname, specialty, country, city }
 
-        if (Object.values(compulsoryFields).some(value => !value)) {
-            return res.status(400).json({ message: "Please fill all compulsory fields" });
+        // Only fullname is required now — everything else is optional.
+        if (!fullname) {
+            return res.status(400).json({ message: "Full name is required" });
         }
 
-        const existingDoctor = await User.findOne({ email });
-        if (existingDoctor) {
-            return res.status(400).json({ message: 'Doctor already exists' });
+        if (email) {
+            const existingDoctor = await User.findOne({ email });
+            if (existingDoctor) {
+                return res.status(400).json({ message: 'Doctor already exists' });
+            }
         }
 
         const randomPassword = Math.random().toString(36).slice(-8);
@@ -35,10 +37,25 @@ exports.register = async (req, res) => {
 
         await user.save()
 
-        await sendDoctorCredentials(email, fullname, randomPassword);
+        let emailSent = true;
+        if (email) {
+            try {
+                await sendDoctorCredentials(email, fullname, randomPassword);
+            } catch (emailErr) {
+                // Don't fail the whole registration just because the email
+                // provider (Brevo) rejected/failed — the account still
+                // exists, the admin just needs to know credentials weren't
+                // delivered so they can resend or share them manually.
+                console.error('Failed to send doctor credentials email:', emailErr.message);
+                emailSent = false;
+            }
+        }
 
         res.status(201).json({
-            message: 'User created successfully',
+            message: emailSent
+                ? 'User created successfully'
+                : 'User created successfully, but the credentials email failed to send',
+            emailSent,
             user: {
                 _id:user._id,
                 fullname: user.fullname,
@@ -49,7 +66,6 @@ exports.register = async (req, res) => {
                 status: user.status,
                 country: user.country,
                 city: user.city,
-                password: randomPassword //this is just for testing purposes
 
             }
 
@@ -108,7 +124,9 @@ exports.updateUser = async (req, res) => {
         }
 
         // Check if email is already taken by another user
-        if (email && email !== user.email) {
+        const emailIsChanging = email && email !== user.email;
+
+        if (emailIsChanging) {
             const existingUser = await User.findOne({
                 email,
                 _id: { $ne: id }
@@ -128,9 +146,31 @@ exports.updateUser = async (req, res) => {
         if (country) user.country = country;
         if (status) user.status = status;
 
+        // Email changed → the old credentials went to an address the doctor
+        // no longer uses, so reset the password and resend fresh credentials
+        // to the new address.
+        let newPlainPassword = null;
+        if (emailIsChanging) {
+            newPlainPassword = Math.random().toString(36).slice(-8);
+            user.password = await bcrypt.hash(newPlainPassword, 10);
+            user.passwordUpdated = false;
+        }
 
         // Save user
         await user.save();
+
+        let emailSent = true;
+        if (emailIsChanging) {
+            try {
+                await sendDoctorCredentials(user.email, user.fullname, newPlainPassword);
+            } catch (emailErr) {
+                // Same reasoning as register: don't fail the update just
+                // because Brevo failed — the account is updated either way,
+                // the admin just needs to know to resend/share manually.
+                console.error('Failed to send updated doctor credentials email:', emailErr.message);
+                emailSent = false;
+            }
+        }
 
         // Return user without sensitive data
         const userResponse = user.toObject();
@@ -138,7 +178,12 @@ exports.updateUser = async (req, res) => {
         delete userResponse.refreshToken;
 
         res.status(200).json({
-            message: 'User updated successfully',
+            message: emailIsChanging
+                ? (emailSent
+                    ? 'User updated successfully. New credentials sent to the updated email.'
+                    : 'User updated successfully, but the new credentials email failed to send')
+                : 'User updated successfully',
+            emailSent: emailIsChanging ? emailSent : undefined,
             user: userResponse
         });
     } catch (error) {
@@ -154,5 +199,3 @@ exports.updateUser = async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 };
-
-
