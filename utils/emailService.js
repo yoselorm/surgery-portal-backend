@@ -14,7 +14,7 @@ apiKey.apiKey = process.env.BREVO_API_KEY;
 
 const tranEmailApi = new SibApiV3Sdk.TransactionalEmailsApi();
 
-const sendEmail = ({ to, subject, text }) => {
+const sendEmail = ({ to, subject, html, text }) => {
     return tranEmailApi.sendTransacEmail({
         sender: {
             email: process.env.BREVO_SENDER_EMAIL,
@@ -22,7 +22,7 @@ const sendEmail = ({ to, subject, text }) => {
         },
         to: [{ email: to }],
         subject,
-        // htmlContent: html,
+        htmlContent: html,
         textContent: text,
     });
 };
