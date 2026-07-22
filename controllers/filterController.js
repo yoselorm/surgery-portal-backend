@@ -160,8 +160,10 @@ exports.filterFunction = async (req, res) => {
 
     // Execute Query
     const surgeries = await surgerModel.find(query)
-      .populate('doctor', 'fullname email')
+      .populate('doctor', 'doctorId fullname email')
       .sort({ date: -1 });
+
+      
 
     res.json({
       success: true,
