@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const Admin = require('../models/adminModel');
 const User = require('../models/userModel');
 const crypto = require('crypto');
-const { sendEmail } = require('../utils/emailService');
+const { sendPasswordResetEmail } = require('../utils/emailService');
 
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
 const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET;
@@ -199,9 +199,8 @@ exports.forgotPassword = async (req, res) => {
         await user.save({ validateBeforeSave: false });
 
         const resetUrl = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
-        const message = `You requested a password reset. Click the link below to reset your password:\n${resetUrl}\n\nThis link expires in 15 minutes.`;
 
-        await sendEmail({ to: user.email, subject: "Password Reset", html: message, text: message });
+        await sendPasswordResetEmail(user.email, resetUrl);
 
         res.status(200).json({ message: "If this email exists, a reset link has been sent" });
     } catch (error) {

@@ -149,7 +149,97 @@ const sendDoctorCredentials = async (email, firstName, plainPassword) => {
 };
 
 
+const sendPasswordResetEmail = async (email, resetUrl) => {
+    try {
+        return await sendEmail({
+            to: email,
+            subject: 'Reset Your SurgiDesk Password',
+            text: `You requested a password reset. Open this link to reset your password:\n${resetUrl}\n\nThis link expires in 15 minutes. If you didn't request this, you can safely ignore this email.`,
+            html: `
+        <body style="margin:0;padding:0;background:#eef1f5;font-family:Segoe UI,Arial,sans-serif;">
+          <table width="100%" cellpadding="0" cellspacing="0" style="padding:40px 0;">
+            <tr>
+              <td align="center">
+                <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:12px;box-shadow:0 4px 16px rgba(13,35,64,0.12);overflow:hidden;">
+
+                  <!-- Header banner -->
+                  <tr>
+                    <td>
+                      <img
+                        src="https://isolp.org/images/isolpicon.png"
+                        alt="ISOLP Logo"
+                        width="64"
+                        height="64"
+                        style="display:block;margin:0 auto 16px auto;border-radius:12px;"
+                        />
+                    </td>
+                  </tr>
+
+                  <!-- Content -->
+                  <tr>
+                    <td style="padding:40px;">
+                      <p style="font-size:16px;color:#22303f;line-height:1.7;">
+                        Hello,
+                      </p>
+
+                      <p style="font-size:15px;color:#48586b;line-height:1.7;">
+                        We received a request to reset the password for your <strong>SurgiDesk</strong> account.
+                        Click the button below to choose a new password.
+                      </p>
+
+                      <!-- Reset Button -->
+                      <div style="text-align:center;margin:35px 0;">
+                        <a href="${resetUrl}"
+                           target="_blank"
+                           style="background:#0d2340;color:#ffffff;text-decoration:none;padding:14px 36px;border-radius:8px;font-size:16px;font-weight:600;">
+                          Reset Password →
+                        </a>
+                      </div>
+
+                      <p style="font-size:14px;color:#8a94a3;line-height:1.6;">
+                        Or copy and paste this link into your browser:<br>
+                        <a href="${resetUrl}" style="color:#0d2340;word-break:break-all;">${resetUrl}</a>
+                      </p>
+
+                      <!-- Security Notice -->
+                      <div style="background:#fbf1e6;border-left:4px solid #a9713f;padding:16px;border-radius:6px;margin-top:20px;">
+                        <p style="margin:0;font-size:14px;color:#6b4a26;">
+                          🔒 This link expires in 15 minutes. If you didn't request a password reset, you can safely ignore this email.
+                        </p>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Footer -->
+                  <tr>
+                    <td style="background:#f6f7f9;padding:30px;text-align:center;border-top:1px solid #e5e7eb;">
+                      <p style="margin:0;font-size:15px;color:#374151;">
+                        Warm regards,
+                      </p>
+                      <p style="margin:6px 0 0 0;font-size:16px;font-weight:600;color:#0d2340;">
+                        ISOLP Executive Council
+                      </p>
+                      <p style="margin-top:14px;font-size:12px;color:#9ca3af;">
+                        © 2026 SurgiDesk. All rights reserved.
+                      </p>
+                    </td>
+                  </tr>
+
+                </table>
+              </td>
+            </tr>
+          </table>
+        </body>
+      `,
+        });
+    } catch (err) {
+        console.error('❌ Brevo send error:', err.response?.text || err.message);
+        throw err;
+    }
+};
+
 module.exports = {
     sendEmail,
     sendDoctorCredentials,
+    sendPasswordResetEmail,
 };
